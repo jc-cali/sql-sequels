@@ -1,5 +1,6 @@
 package org.jcapps.sequels;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -31,11 +32,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // NOT an override
     public void seedDatabase() {
-
+        insertSequel(1, "Empire Strikes Back");
+        insertSequel(2, "Toy Story 2");
+        insertSequel(3, "Raiders of the Lost Ark");
+        insertSequel(4, "Halloween 2");
+        insertSequel(5, "Moulan 2");
+        insertSequel(6, "Taken 2");
+        insertSequel(7, "Jaws 2");
+        insertSequel(8, "Deathwish 2");
+        insertSequel(9, "Zoolander 2");
+        insertSequel(10, "Die Harder with a Vengence");
     }
 
-    public void insertSequek(int id, String name) {
-        
+    public void insertSequel(int id, String name) {
+        // insert into table_name values (1, "Blah");
+        SQLiteDatabase db = getReadableDatabase();
+        // special type of hashmap for Datbase values
+        ContentValues values = new ContentValues();
+        values.put("id", id);
+        values.put("name", name);
+        // protin: great place to put in a breakpoint
+        db.insert("sequels", null, values);
+        // insert into TABLE, null, VALUES
     }
 
 }
